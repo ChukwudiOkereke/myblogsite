@@ -1,0 +1,483 @@
+*{
+
+  box-sizing: border-box;
+}
+
+
+/* Base Reset & Typography */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+}
+
+
+
+/* Header/Nav Bar */
+.header-section {
+  background-color: #b80e0e;
+  color: white;
+  padding: 1rem;
+
+}
+
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-bar h1 {
+  margin: 0;
+  font-size: 3.5rem;
+}
+
+
+
+
+.nav-bar ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+
+}
+
+
+.nav-bar ul li a {
+  color: white;
+  text-decoration: none;
+
+}
+
+
+/* 1. Theme toggle switch */
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.theme-toggle input {
+  display: none;
+}
+
+.theme-toggle .slider {
+  width: 40px;
+  height: 20px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.theme-toggle .slider::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  background-color: white;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+/* 2. Dark mode styles using :has() if supported */
+body:has(#toggle-dark:checked) {
+  background-color: #121212;
+  color: #f0f0f0;
+}
+
+body:has(#toggle-dark:checked) .header-section {
+  background-color: #2c2c2c; /* dark background for header */
+  color: #f0f0f0;
+}
+
+body:has(#toggle-dark:checked) .nav-bar,
+body:has(#toggle-dark:checked) .blog-post-card,
+body:has(#toggle-dark:checked) .sidebar,
+body:has(#toggle-dark:checked) .footer-section {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+}
+
+body:has(#toggle-dark:checked) a {
+  color: #90cdf4;
+}
+
+/* Move the toggle dot to the right in dark mode */
+#toggle-dark:checked + .slider::before {
+  transform: translateX(20px);
+}
+
+#toggle-dark:checked + .slider {
+  background-color: #555;
+}
+
+body:has(#toggle-dark:checked) .featured-post {
+  background-color: #1e1e1e;
+  color: #f0f0f0;
+  display: flex; /* if you want the image and content side-by-side */
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+body:has(#toggle-dark:checked) .featured-post img {
+  width: 150px; /* or whatever fits */
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+body:has(#toggle-dark:checked) .featured-post .featured-content a {
+  color: #90cdf4; /* link color in dark mode */
+}
+
+
+
+
+
+
+
+
+
+.featured-post {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #ccc;
+  flex-wrap: wrap;
+}
+
+.featured-post img {
+  width: 200px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.featured-content {
+  flex: 1;
+}
+
+.featured-content h2 {
+  margin: 0 0 10px;
+  font-size: 1.8em;
+}
+
+.featured-content .post-meta {
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 10px;
+}
+
+.featured-content a {
+  display: inline-block;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+}
+
+
+/* Main content layout */
+.content-wrapper {
+  display: flex;
+  gap: 4rem;
+  padding: 4rem;
+}
+
+/* Blog posts section */
+.blog-section {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Each blog post */
+.blog-post-card {
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.blog-post-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+  margin: 0 auto;
+  
+}
+
+.blog-post-card h2 {
+  margin: 30px 0 5px;
+}
+
+.post-meta {
+  font-size: 1.2rem;
+  color: gray;
+  margin-bottom: 0.5rem;
+}
+
+/* Sidebar */
+.sidebar {
+  flex: 1;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.sidebar h3 {
+  margin-top: 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 0.5rem 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Recent posts in sidebar */
+.recent-posts {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+.recent-posts li {
+  margin-bottom: 0.7rem;
+}
+
+.recent-posts li a {
+  color: #555;
+  text-decoration: none;
+  font-size: 1.3rem;
+  display: block;
+  transition: color 0.3s ease;
+}
+
+.recent-posts li a:hover {
+  color: #0077cc;
+}
+
+/* Search box in sidebar */
+.search-box {
+  display: flex;
+  margin-bottom: 1.5rem;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  outline: none;
+}
+
+.search-box button {
+  padding: 8px 12px;
+  background-color: #be0a0a;
+  color: white;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+.search-box button:hover {
+  background-color: #119436;
+}
+
+
+/* news later section  */
+
+.newsletter-section {
+  background-color: #eee;
+  padding: 40px 20px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.newsletter-section h3 {
+  margin-bottom: 10px;
+  font-size: 1.8em;
+}
+
+.newsletter-form {
+  margin-top: 20px;
+}
+
+.newsletter-form input[type="email"] {
+  padding: 10px;
+  width: 50%;
+  max-width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+
+.newsletter-form button {
+  padding: 10px 20px;
+  margin-left: 10px;
+  background-color: #c31414;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.newsletter-form button:hover {
+  background-color: #0cb300;
+}
+
+/* pagenation section */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.pagination a {
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+  background-color: #f4f4f4;
+}
+
+.pagination a.active {
+  background-color: #e21313;
+  color: white;
+  border-color: #000000;
+}
+
+
+
+/* Footer */
+.footer-section {
+  background-color: #e01010;
+  color: white;
+  text-align: center;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer-section li {
+  cursor: pointer;
+}
+
+
+/* comment area  */
+
+.comment-section {
+
+  padding: 20px;
+  /* border-top:  1px solid #ccc; */
+}
+
+.comment-section input,
+.comment-section textarea {
+  /* your styles here */
+
+  width: 50%;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px; 
+}
+
+
+.comment-section textarea {
+  padding: 50px;
+
+}
+
+
+.comment-section button {
+
+  background-color: brown;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+  margin-top: 10px;
+
+}
+
+/* back-to-top button */
+
+.back-to-top {
+
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: brown;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  /* display: none; */
+
+}
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+  .content-wrapper {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .nav-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .nav-bar ul {
+    flex-direction: column;
+  }
+}
